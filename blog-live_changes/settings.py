@@ -1,6 +1,6 @@
+# The settings file for my blog
 import os
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-# Django settings for blog project.
 
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG

@@ -1,0 +1,6 @@
+# No python compiled files
+*.pyc
+
+*.DS_Store
+manage.py
+pagedown/
