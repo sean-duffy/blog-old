@@ -1,5 +1,5 @@
 from main.models import Post
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse, Http404, QueryDict
 from django.template import Context, loader, RequestContext
 from django.shortcuts import render_to_response, get_object_or_404, render, get_list_or_404
 from django.utils import dateformat
@@ -70,3 +70,21 @@ def blog(request, page):
 
 	except EmptyPage:
 		raise Http404
+
+def archive(request):
+	months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September',
+	'October', 'November', 'December']
+	posts_2013 = []
+	for month in range(12):
+		posts = Post.objects.filter(post_date__month=month+1)
+		if len(posts) > 0:
+			posts_2013.append((months[month], posts))
+
+	for month in range(len(posts_2013)):
+		for post_num in range(len(posts_2013[month][1])):
+			date_format = dateformat.DateFormat(posts_2013[month][1][post_num].post_date)
+			posts_2013[month][1][post_num].post_date = date_format.format('jS \o\\f F\, Y')
+
+	return render(request, 'main/archive.html', {
+		'posts_2013' : posts_2013
+		})

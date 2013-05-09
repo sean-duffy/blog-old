@@ -10,5 +10,6 @@ urlpatterns = patterns('',
     url(r'^blog/(?P<year>\d+)/(?P<month>\d+)/(?P<title>\S+)/$', 'main.views.post'),
     url(r'^about/$', 'main.views.about'),
     url(r'^projects/$', 'main.views.projects'),
+    url(r'^archive/$', 'main.views.archive'),
     url(r'^admin/', include(admin.site.urls)),
 )

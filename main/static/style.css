@@ -127,7 +127,6 @@ header {
 	float: left;
 }
 nav {
-	width: 200px;
 	font-size: 1.3em;
 	display: inline-block;
 	float: right;
@@ -150,4 +149,30 @@ nav {
 }
 #portrait {
 	margin: 5px auto -15px;
+}
+#archive h1 {
+	font-size: 3.4em;
+	margin: 10px 0 0 0;	
+}
+#archive h1:hover {
+	color: #222222;
+}
+#archive h2 {
+	font-size: 1.8em;
+	margin: 0 0 5px 0;
+}
+#archive h2:hover {
+	color: #222222;
+}
+#archive a {
+	font-size: 1.5em;
+	margin: 0 0 5px 0;
+}
+#archive span { 
+	margin: 0 0 10px 0;
+	color: #333333;
+	font-family: Palatino, 'Palatino Linotype', serif;
+	font-size: 1em;
+	line-height: 25px;
+	display: inline-block;
 }
