@@ -83,7 +83,8 @@ def archive(request):
 	for month in range(len(posts_2013)):
 		for post_num in range(len(posts_2013[month][1])):
 			date_format = dateformat.DateFormat(posts_2013[month][1][post_num].post_date)
-			posts_2013[month][1][post_num].post_date = date_format.format('jS \o\\f F\, Y')
+			posts_2013[month][1][post_num].formatted_date = date_format.format('jS \o\\f F\, Y')
+			posts_2013[month][1][post_num].formatted_title = posts_2013[month][1][post_num].title.replace(' ', '-')
 
 	return render(request, 'main/archive.html', {
 		'posts_2013' : posts_2013
