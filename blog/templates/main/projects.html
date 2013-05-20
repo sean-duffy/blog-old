@@ -9,9 +9,19 @@
 	<body>
 		<div id='main_wrap'>
 			{% include 'main/header.html' %}
-			<div id='home_content'>
-				<p>I'll have something on this page soon, promise!</p>
-			</div>
+				<div id='archive'>
+					<h1>2013</h1>
+						{% for posts in posts_2013 %}
+							<h2>{{ posts.0 }}</h2>
+							{% for post in posts.1 %}
+								<a href='/blog/2013/{{ post.post_date.month }}/{{ post.formatted_title }}/'>{{ post.title }}</a>
+								<br />
+								<span>Posted on the {{ post.formatted_date }}.</span>
+								<br />
+							{% endfor %}
+						{% endfor %}
+					<h1>
+				</div>
 			{% include 'main/footer.html' %}
 		</div>
 	</body>

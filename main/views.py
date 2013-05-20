@@ -14,7 +14,26 @@ def about(request):
 	return render_to_response('main/about.html', RequestContext(request))
 
 def projects(request):
-	return render_to_response('main/projects.html', RequestContext(request))
+	months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September',
+	'October', 'November', 'December']
+	posts_2013 = []
+	for month in range(12):
+		posts = Post.objects.filter(post_date__month=month+1, title__contains='Project')
+		if len(posts) > 0:
+			posts_2013.append([months[month], posts])
+
+	for month in range(len(posts_2013)):
+		for post_num in range(len(posts_2013[month][1])):
+			date_format = dateformat.DateFormat(posts_2013[month][1][post_num].post_date)
+			posts_2013[month][1][post_num].formatted_date = date_format.format('jS \o\\f F\, Y')
+			posts_2013[month][1][post_num].formatted_title = posts_2013[month][1][post_num].title.replace(' ', '-')
+	for month in range(len(posts_2013)):
+		posts_2013[month][1] = posts_2013[month][1][::-1]
+	posts_2013 = posts_2013[::-1]
+
+	return render(request, 'main/projects.html', {
+		'posts_2013' : posts_2013
+		})
 
 def post(request, year, month, title):
 	spaced_title = title.replace('-', ' ')
