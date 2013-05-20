@@ -123,7 +123,6 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'grappelli',
     'pagedown',
     'django.contrib.admin',
     'main',
