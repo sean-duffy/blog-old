@@ -60,6 +60,7 @@ body {
 #post blockquote {
 	color: #444444;
 	font-style: italic;
+	text-align: center;
 }
 #post img {
 	display: block;
@@ -89,11 +90,6 @@ body {
 }
 #post li {
 	margin: 4px 0 4px 0;
-}
-#caption {
-	color: #444444;
-	font-style: italic;
-	margin: 0 auto;
 }
 h1, h2, h3, h4, p, nav {
 	font-family: 'OFL Sorts Mill Goudy TT', serif;

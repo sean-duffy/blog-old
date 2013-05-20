@@ -2,7 +2,7 @@ This is a web application I built in late 2012 while I was studying [Computation
 
 ![Application Screenshot](http://imageshack.us/a/img5/6245/portfoliotoolsmall.png "The App")
 
-<div id='caption'>[Click Here](http://seanduffy.co.uk/portfolio_tool/index.php) to view the project.</div>
+>[Click Here](http://seanduffy.co.uk/portfolio_tool/index.php) to view the project.
 
 Part of the course involves using a spreadsheet to construct a portfolio consisting of four stocks, and we were told to play around with the combination of stocks used and the weighting applied to each of them, i.e. what percentage of our total investment we put into each stock. Creating a spreadsheet is a good way to learn something about how the data in the portfolio is analysed, however after doing it once it becomes a very tedious process, having to manually download CSV files of the data for each of the stock prices from Yahoo finance and place them into the right position in the spreadsheet every time we wanted to try another combination.
 
