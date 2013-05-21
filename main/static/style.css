@@ -66,6 +66,7 @@ body {
 	display: block;
 	margin: 10px auto 5px auto;
 	border: 5px solid #DDDDDD;
+	max-width: 600px;
 }
 #post p {
 	margin: 0 0 20px 0;
