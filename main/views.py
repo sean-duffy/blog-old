@@ -26,7 +26,7 @@ def projects(request):
 		for post_num in range(len(posts_2013[month][1])):
 			date_format = dateformat.DateFormat(posts_2013[month][1][post_num].post_date)
 			posts_2013[month][1][post_num].formatted_date = date_format.format('jS \o\\f F\, Y')
-			posts_2013[month][1][post_num].formatted_title = posts_2013[month][1][post_num].title.replace(' ', '-')
+			posts_2013[month][1][post_num].formatted_title = posts_2013[month][1][post_num].title.replace(' ', '-').replace(':', '_')
 	for month in range(len(posts_2013)):
 		posts_2013[month][1] = posts_2013[month][1][::-1]
 	posts_2013 = posts_2013[::-1]
@@ -36,7 +36,7 @@ def projects(request):
 		})
 
 def post(request, year, month, title):
-	spaced_title = title.replace('-', ' ')
+	spaced_title = title.replace('-', ' ').replace('_', ':')
 	post = get_object_or_404(Post, post_date__year=year, post_date__month=month, title__icontains=spaced_title)
 	date_format = dateformat.DateFormat(post.post_date)
 	date_text = date_format.format('jS \o\\f F\, Y')
@@ -73,7 +73,7 @@ def blog(request, page):
 		for post in posts:
 			date_format = dateformat.DateFormat(post.post_date)
 			post_date = post.post_date
-			post_data[i].append(str(post_date.year) + '/' + str(post_date.month) + '/' + post.title.replace(' ', '-'))
+			post_data[i].append(str(post_date.year) + '/' + str(post_date.month) + '/' + post.title.replace(' ', '-').replace(':', '_'))
 			post_data[i].append(post.title)
 			post_data[i].append(date_format.format('jS \o\\f F\, Y'))
 			post_data[i].append(markdown(post.body_text))
