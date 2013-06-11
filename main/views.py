@@ -13,6 +13,9 @@ def index(request):
 def about(request):
 	return render_to_response('main/about.html', RequestContext(request))
 
+def cv(request):
+	return render_to_response('main/cv.html', RequestContext(request))
+
 def projects(request):
 	months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September',
 	'October', 'November', 'December']

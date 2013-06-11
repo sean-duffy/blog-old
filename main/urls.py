@@ -11,5 +11,6 @@ urlpatterns = patterns('',
     url(r'^about/$', 'main.views.about'),
     url(r'^projects/$', 'main.views.projects'),
     url(r'^archive/$', 'main.views.archive'),
+    url(r'^cv/$', 'main.views.cv'),
     url(r'^admin/', include(admin.site.urls)),
 )
