@@ -4,8 +4,28 @@ from django.template import Context, loader, RequestContext
 from django.shortcuts import render_to_response, get_object_or_404, render, get_list_or_404
 from django.utils import dateformat
 from datetime import date
-from markdown import markdown
+import markdown
 from django.core.paginator import Paginator, EmptyPage
+import re
+
+class MyExtension(markdown.extensions.Extension):
+	def extendMarkdown(self, md, md_globals):
+		md.preprocessors.add('ImageProcessor', ImageFormatter(md.preprocessors), '_end')
+
+class ImageFormatter(markdown.preprocessors.Preprocessor):
+	def run(self, lines):
+		new_lines = []
+		for line in lines:
+			match = re.match('^!\[(.*)\]\((.*)"(.*)"\)$', line)
+			if match:
+				alt_text = match.group(1)
+				image_url = match.group(2)
+				caption_text = match.group(3)
+				line = '<a href="' + image_url + '">'
+				line += '<img src="' + image_url + '" alt="' + alt_text + '"></a>'
+				line += '<div id="caption">' + caption_text + '</div>'
+			new_lines.append(line)
+		return new_lines
 
 def index(request):
 	return render_to_response('main/index.html', RequestContext(request))
@@ -47,7 +67,7 @@ def post(request, year, month, title):
 	return render(request, 'main/post.html', {
 		'post_title' : post.title,
 		'post_date' : date_text,
-		'post_body' : markdown(post.body_text),
+		'post_body' : markdown.markdown(post.body_text, [MyExtension()]),
 		'post_url' : post_url
 		})
 
@@ -79,7 +99,7 @@ def blog(request, page):
 			post_data[i].append(str(post_date.year) + '/' + str(post_date.month) + '/' + post.title.replace(' ', '-').replace(':', '_'))
 			post_data[i].append(post.title)
 			post_data[i].append(date_format.format('jS \o\\f F\, Y'))
-			post_data[i].append(markdown(post.body_text))
+			post_data[i].append(markdown.markdown(post.body_text, [MyExtension()]))
 			i += 1
 
 		return render(request, 'main/blog.html', {

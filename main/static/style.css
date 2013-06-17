@@ -62,9 +62,21 @@ body {
 	font-style: italic;
 	text-align: center;
 }
+#caption {
+	color: #444444;
+	font-family: Palatino, 'Palatino Linotype', serif;
+	font-size: 1.1em;
+	line-height: 26px;
+	font-variant: normal;
+	font-weight: normal;
+	text-rendering: optimizeLegibility;
+	margin: -10px 0 0 0;
+	font-style: italic;
+	text-align: center;
+}
 #post img {
 	display: block;
-	margin: 10px auto 5px auto;
+	margin: 10px auto 0 auto;
 	border: 5px solid #DDDDDD;
 	max-width: 600px;
 }
