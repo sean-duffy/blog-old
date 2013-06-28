@@ -13,7 +13,7 @@
 			{% for this_post_data in post_data %}
 			<div id ='post'>
 				<a href='/blog/{{ this_post_data.0 }}'><h1>{{ this_post_data.1 }}</h1></a>
-				<span>Posted on the {{ this_post_data.2 }}.</span>
+				<span id='date'>Posted on the {{ this_post_data.2 }}.</span>
 				{{ this_post_data.3|safe }}
 			</div>
 			{% endfor %}

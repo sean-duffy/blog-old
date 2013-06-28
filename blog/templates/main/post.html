@@ -11,7 +11,7 @@
 			{% include 'main/header.html' %}
 				<div id ='post'>
 					<a href='/blog/{{ post_url }}'><h1>{{ post_title }}</h1></a>
-					<span>Posted on the {{ post_date }}.</span>
+					<span id='date'>Posted on the {{ post_date }}.</span>
 					{{ post_body|safe }}
 				</div>
 			{% include 'main/footer.html' %}
