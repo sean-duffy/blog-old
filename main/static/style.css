@@ -98,7 +98,7 @@ body {
 	display: inline-block;
 }
 #post ul {
-	margin: 5px, 0 0 0;
+	margin: 5px 0 0 0;
 	font-family: Palatino, 'Palatino Linotype', serif;
 }
 #post li {
@@ -189,4 +189,7 @@ nav {
 	font-size: 1em;
 	line-height: 25px;
 	display: inline-block;
+}
+.gist {
+	margin: 0 -40px 0 -40px;
 }
