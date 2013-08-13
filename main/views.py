@@ -19,7 +19,7 @@ class ImageFormatter(markdown.preprocessors.Preprocessor):
             match = re.match('^!\[(.*)\]\((.*)"(.*)"\)$', line)
             if match:
                 alt_text = match.group(1)
-                    image_url = match.group(2)
+                image_url = match.group(2)
                 caption_text = match.group(3)
                 line = '<a href="' + image_url + '">'
                 line += '<img src="' + image_url + '" alt="' + alt_text + '"></a>'
