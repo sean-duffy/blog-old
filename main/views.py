@@ -21,7 +21,13 @@ class ImageFormatter(markdown.preprocessors.Preprocessor):
                 alt_text = match.group(1)
                 image_url = match.group(2)
                 caption_text = match.group(3)
-                line = '<a href="' + image_url + '">'
+
+                if 'flickr' in image_url:
+                    image_link_url = image_url.replace('_c.jpg', '_b.jpg')
+                else:
+                    image_link_url = image_url
+
+                line = '<a href="' + image_link_url + '" target="_blank">'
                 line += '<img src="' + image_url + '" alt="' + alt_text + '"></a>'
                 line += '<div id="caption">' + caption_text + '</div>'
             new_lines.append(line)
