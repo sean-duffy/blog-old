@@ -1,8 +1,11 @@
-# No python compiled files
 *.pyc
-
 *.DS_Store
-manage.py
+*.swp
+
 pagedown/
 db
 posts/
+public/
+
+blog/local_settings.py
+
