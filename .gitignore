@@ -2,10 +2,8 @@
 *.DS_Store
 *.swp
 
-pagedown/
 db
 posts/
-public/
 
 blog/local_settings.py
 
