@@ -194,3 +194,11 @@ nav {
 .gist {
 	margin: 0 -40px 0 -40px;
 }
+
+.gist-meta {
+	display: none;
+}
+
+#post .gist .gist-file {
+	border-bottom-width: 0;
+}
