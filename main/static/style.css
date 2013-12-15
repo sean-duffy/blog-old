@@ -202,3 +202,7 @@ nav {
 #post .gist .gist-file {
 	border-bottom-width: 0;
 }
+
+iframe {
+    margin: 0 0 10px 0;
+}
