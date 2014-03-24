@@ -42,26 +42,44 @@ def about(request):
 def cv(request):
     return render_to_response('main/cv.html', RequestContext(request))
 
-def projects(request):
-    months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September',
-    'October', 'November', 'December']
-    posts_2013 = []
-    for month in range(12):
-        posts = Post.objects.filter(post_date__month=month+1, title__contains='Project')
-        if len(posts) > 0:
-            posts_2013.append([months[month], posts])
+def get_tagged_posts(tag=None):
+    months = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
+    'August', 'September','October', 'November', 'December']
+    years = [2013, 2014] # Add the year to this list each time a year passes
 
-    for month in range(len(posts_2013)):
-        for post_num in range(len(posts_2013[month][1])):
-            date_format = dateformat.DateFormat(posts_2013[month][1][post_num].post_date)
-            posts_2013[month][1][post_num].formatted_date = date_format.format('jS \o\\f F\, Y')
-            posts_2013[month][1][post_num].formatted_title = posts_2013[month][1][post_num].title.replace(' ', '-').replace(':', '_')
-    for month in range(len(posts_2013)):
-        posts_2013[month][1] = posts_2013[month][1][::-1]
-    posts_2013 = posts_2013[::-1]
+    all_posts = []
+
+    for year in years:
+        year_posts = []
+
+        for month in range(12):
+            if tag:
+                posts = Post.objects.filter(post_date__month=month+1, post_date__year=year, title__contains=tag)
+            else:
+                posts = Post.objects.filter(post_date__month=month+1, post_date__year=year)
+            if len(posts) > 0:
+                year_posts.append([months[month], posts])
+
+        for month in range(len(year_posts)):
+            for post_num in range(len(year_posts[month][1])):
+                date_format = dateformat.DateFormat(year_posts[month][1][post_num].post_date)
+                year_posts[month][1][post_num].formatted_date = date_format.format('jS \o\\f F\, Y')
+                year_posts[month][1][post_num].formatted_title = year_posts[month][1][post_num].title.replace(' ', '-')
+        for month in range(len(year_posts)):
+            year_posts[month][1] = year_posts[month][1][::-1]
+
+        year_posts = year_posts[::-1]
+        if len(year_posts) > 0:
+            all_posts.append((year, year_posts))
+
+    all_posts = all_posts[::-1]
+    return all_posts
+
+def projects(request):
+    all_posts = get_tagged_posts('Project')
 
     return render(request, 'main/projects.html', {
-        'posts_2013' : posts_2013
+        'all_posts': all_posts
         })
 
 def post(request, year, month, title):
@@ -120,23 +138,8 @@ def blog(request, page):
         raise Http404
 
 def archive(request):
-    months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September',
-    'October', 'November', 'December']
-    posts_2013 = []
-    for month in range(12):
-        posts = Post.objects.filter(post_date__month=month+1)
-        if len(posts) > 0:
-            posts_2013.append([months[month], posts])
-
-    for month in range(len(posts_2013)):
-        for post_num in range(len(posts_2013[month][1])):
-            date_format = dateformat.DateFormat(posts_2013[month][1][post_num].post_date)
-            posts_2013[month][1][post_num].formatted_date = date_format.format('jS \o\\f F\, Y')
-            posts_2013[month][1][post_num].formatted_title = posts_2013[month][1][post_num].title.replace(' ', '-')
-    for month in range(len(posts_2013)):
-        posts_2013[month][1] = posts_2013[month][1][::-1]
-    posts_2013 = posts_2013[::-1]
+    all_posts = get_tagged_posts()
 
     return render(request, 'main/archive.html', {
-        'posts_2013' : posts_2013
+        'all_posts' : all_posts
         })

@@ -1,28 +1,29 @@
 <!DOCTYPE HTML>
 <html>
-	<head>
-		<title>Sean Duffy / Archive</title>
-		<link href='http://fonts.googleapis.com/css?family=OFL+Sorts+Mill+Goudy+TT:regular,italic' rel='stylesheet' type='text/css'>
-		<link rel='stylesheet' href='{{ STATIC_URL }}pictonic/css/pictonic.css'>
-		<link href='{{ STATIC_URL }}style.css' rel='stylesheet' type='text/css'>
-	</head>
-	<body>
-		<div id='main_wrap'>
-			{% include 'main/header.html' %}
-				<div id='archive'>
-					<h1>2013</h1>
-						{% for posts in posts_2013 %}
-							<h2>{{ posts.0 }}</h2>
-							{% for post in posts.1 %}
-								<a href='/blog/2013/{{ post.post_date.month }}/{{ post.formatted_title }}/'>{{ post.title }}</a>
-								<br />
-								<span>Posted on the {{ post.formatted_date }}.</span>
-								<br />
-							{% endfor %}
-						{% endfor %}
-					<h1>
-				</div>
-			{% include 'main/footer.html' %}
-		</div>
-	</body>
+    <head>
+        <title>Sean Duffy / Archive</title>
+        <link href='http://fonts.googleapis.com/css?family=OFL+Sorts+Mill+Goudy+TT:regular,italic' rel='stylesheet' type='text/css'>
+        <link rel='stylesheet' href='{{ STATIC_URL }}pictonic/css/pictonic.css'>
+        <link href='{{ STATIC_URL }}style.css' rel='stylesheet' type='text/css'>
+    </head>
+    <body>
+        <div id='main_wrap'>
+            {% include 'main/header.html' %}
+                <div id='archive'>
+                    {% for year in all_posts %}
+                        <h1>{{ year.0 }}</h1>
+                        {% for posts in year.1 %}
+                            <h2>{{ posts.0 }}</h2>
+                            {% for post in posts.1 %}
+                                <a href='/blog/2013/{{ post.post_date.month }}/{{ post.formatted_title }}/'>{{ post.title }}</a>
+                                <br />
+                                <span>Posted on the {{ post.formatted_date }}.</span>
+                                <br />
+                            {% endfor %}
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+            {% include 'main/footer.html' %}
+        </div>
+    </body>
 </html>
