@@ -67,3 +67,17 @@ section p {
 	line-height: 26px;
 	margin: -5px 0 20px 0;
 }
+#address_left {
+    float: left;
+    text-align: center;
+    display: inline-block;
+}
+#address_right {
+    float: right;
+    text-align: center;
+    display: inline-block;
+}
+#addresses {
+    padding: 5px;
+    height: 100px;
+}
