@@ -77,7 +77,11 @@ section p {
     text-align: center;
     display: inline-block;
 }
+#address_center {
+    text-align: center;
+    display: inline-block;
+    margin: 0 auto;
+}
 #addresses {
     padding: 5px;
-    height: 100px;
 }
