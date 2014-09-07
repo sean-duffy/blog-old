@@ -4,7 +4,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
-ALLOWED_HOSTS = '*'
+ALLOWED_HOSTS = ['.seanduffy.co.uk']
 
 ADMINS = (
     ('Sean Duffy', 'seanduffy@live.com'),
