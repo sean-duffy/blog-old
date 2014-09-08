@@ -84,7 +84,7 @@ def projects(request):
 
 def post(request, year, month, title):
     spaced_title = title.replace('-', ' ').replace('_', ':')
-    post = get_object_or_404(Post, post_date__year=year, post_date__month=month, title__icontains=spaced_title)
+    post = get_object_or_404(Post, post_date__year=year, post_date__month=month, title=spaced_title)
     date_format = dateformat.DateFormat(post.post_date)
     date_text = date_format.format('jS \o\\f F\, Y')
     post_url = year + '/' + month + '/' + title
