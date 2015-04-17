@@ -7,3 +7,5 @@ posts/
 
 blog/local_settings.py
 blog/static_files/
+
+db_backup
