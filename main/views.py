@@ -45,7 +45,7 @@ def cv(request):
 def get_tagged_posts(tag=None):
     months = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
     'August', 'September','October', 'November', 'December']
-    years = [2013, 2014] # Add the year to this list each time a year passes
+    years = [2013, 2014, 2015] # Add the year to this list each time a year passes
 
     all_posts = []
 
