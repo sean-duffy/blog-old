@@ -54,9 +54,9 @@ def get_tagged_posts(tag=None):
 
         for month in range(12):
             if tag:
-                posts = Post.objects.filter(post_date__month=month+1, post_date__year=year, title__contains=tag)
+                posts = Post.objects.filter(post_date__month=month+1, post_date__year=year, title__contains=tag).order_by('post_date')
             else:
-                posts = Post.objects.filter(post_date__month=month+1, post_date__year=year)
+                posts = Post.objects.filter(post_date__month=month+1, post_date__year=year).order_by('post_date')
             if len(posts) > 0:
                 year_posts.append([months[month], posts])
 
@@ -96,7 +96,7 @@ def post(request, year, month, title):
         })
 
 def blog(request, page):
-    post_list = get_list_or_404(Post)[::-1]
+    post_list = get_list_or_404(Post.objects.order_by('post_date'))[::-1]
     pages = Paginator(post_list, 3)
 
     if pages.page(page).has_next():
