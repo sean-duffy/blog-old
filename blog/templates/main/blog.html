@@ -14,7 +14,9 @@
 			<div id ='post'>
 				<a href='/blog/{{ this_post_data.0 }}'><h1>{{ this_post_data.1 }}</h1></a>
 				<span id='date'>Posted on the {{ this_post_data.2 }}.</span>
-				{{ this_post_data.3|safe }}
+        {{ this_post_data.3|safe }}
+
+        <p><a href='/blog/{{ this_post_data.0 }}'>Read more</a></p>
 			</div>
 			{% endfor %}
 

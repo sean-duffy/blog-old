@@ -123,7 +123,7 @@ def blog(request, page):
             post_data[i].append(str(post_date.year) + '/' + str(post_date.month) + '/' + post.title.replace(' ', '-').replace(':', '_'))
             post_data[i].append(post.title)
             post_data[i].append(date_format.format('jS \o\\f F\, Y'))
-            post_data[i].append(markdown.markdown(post.body_text, [MyExtension()]))
+            post_data[i].append(markdown.markdown(post.body_text, [MyExtension()]).split('</p>')[0])
             i += 1
 
         return render(request, 'main/blog.html', {
